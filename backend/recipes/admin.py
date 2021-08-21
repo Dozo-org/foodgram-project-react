@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 
 from .models import (Favorite, Ingredient, IngredientAmount, Recipe,
                      ShoppingList, Tag)
@@ -81,3 +82,4 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(ShoppingList, ShoppingListAdmin)
 admin.site.register(Favorite, FavoriteAdmin)
 admin.site.register(IngredientAmount, IngredientAmountAdmin)
+admin.site.unregister(Group)
