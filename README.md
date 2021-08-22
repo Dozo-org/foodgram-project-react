@@ -98,8 +98,9 @@ docker-compose exec web python manage.py createsuperuser
 Проект доступен по следующей ссылке <http://178.154.224.251/>
 
 Учетная запись администратора:
-  Email: admin@foodgram.com
-  Password: foodgram
+
+  - Email: admin@foodgram.com
+  - Password: foodgram
 
 ## Бейдж workflows
 
