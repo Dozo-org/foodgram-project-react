@@ -11,18 +11,14 @@ services:
       - ../backend/.env
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: rogachev/foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
       - db
 
   backend:
-    build: 
-      context: ../backend
-      dockerfile: Dockerfile
+    image: rogachev/foodgram_backend
     restart: always
     volumes:
       - static_value:/code/static/
