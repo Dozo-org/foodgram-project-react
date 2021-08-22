@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
+from import_export.admin import ImportExportMixin
 
 from .models import (Favorite, Ingredient, IngredientAmount, Recipe,
                      ShoppingList, Tag)
@@ -12,7 +13,7 @@ class TagAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-class IngredientAdmin(admin.ModelAdmin):
+class IngredientAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = (
         'id',
         'name',
@@ -56,6 +57,9 @@ class RecipeAdmin(admin.ModelAdmin):
     def ingredients(self, obj):
         return list(obj.ingredients.all())
     ingredients.short_description = 'Ингредиенты'
+
+    autocomplete_fields = ['ingredients']
+    inlines = [IngredientsInline]
 
 
 class FavoriteAdmin(admin.ModelAdmin):
