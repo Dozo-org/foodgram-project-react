@@ -3,10 +3,10 @@ from django.db import transaction
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
-from users.serializers import UserSerializer
 
 from .models import (Favorite, Ingredient, IngredientAmount, Recipe,
                      ShoppingList, Tag)
+from users.serializers import UserSerializer
 
 User = get_user_model()
 
@@ -55,9 +55,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('id', 'tags', 'author', 'ingredients',
-                  'is_favorited', 'is_in_shopping_cart',
-                  'name', 'image', 'text', 'cooking_time')
+        fields = '__all__'
 
     def get_ingredients(self, obj):
         recipe = obj

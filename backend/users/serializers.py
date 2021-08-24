@@ -1,3 +1,4 @@
+from djoser import serializers as djoser_serializers
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
@@ -30,6 +31,15 @@ class UserSerializer(serializers.ModelSerializer):
         return Follow.objects.filter(author=obj, user=user).exists()
 
 
+class UserCreateSerializer(djoser_serializers.UserCreateSerializer):
+
+    class Meta(djoser_serializers.UserCreateSerializer.Meta):
+        fields = djoser_serializers.UserCreateSerializer.Meta.fields + (
+            'first_name',
+            'last_name',
+        )
+
+
 class ShowFollowersSerializer(serializers.ModelSerializer):
     recipes = serializers.SerializerMethodField()
     recipes_count = serializers.SerializerMethodField()
@@ -42,16 +52,14 @@ class ShowFollowersSerializer(serializers.ModelSerializer):
 
     def get_is_subscribed(self, user):
         current_user = self.context.get('current_user')
-        other_user = user.following.all()
         if user.is_anonymous:
-            return False
-        if other_user.count() == 0:
             return False
         if Follow.objects.filter(user=user, author=current_user).exists():
             return True
         return False
 
     def get_recipes(self, obj):
+        '''Импорт находится здесь для избежания проблем с миграциями'''
         from recipes.serializers import ShowRecipeAddedSerializer
         recipes = obj.recipes.all()[:settings.RECIPES_LIMIT]
         request = self.context.get('request')

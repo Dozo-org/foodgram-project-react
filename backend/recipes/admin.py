@@ -58,9 +58,6 @@ class RecipeAdmin(admin.ModelAdmin):
         return list(obj.ingredients.all())
     ingredients.short_description = 'Ингредиенты'
 
-    autocomplete_fields = ['ingredients']
-    inlines = [IngredientsInline]
-
 
 class FavoriteAdmin(admin.ModelAdmin):
     list_display = (

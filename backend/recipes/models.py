@@ -121,6 +121,10 @@ class IngredientAmount(models.Model):
     class Meta:
         verbose_name = 'Количество игредиентов в рецепте'
         verbose_name_plural = verbose_name
+        constraints = [
+            models.UniqueConstraint(fields=['ingredient', 'recipe'],
+                                    name='unique_ingredient_recipe')
+        ]
 
     def __str__(self):
         return f'{self.ingredient} в {self.recipe}'
@@ -137,7 +141,7 @@ class Favorite(models.Model):
         on_delete=models.CASCADE,
         related_name='favorites',
     )
-    when_added = models.DateTimeField(
+    date_created = models.DateTimeField(
         auto_now_add=True, verbose_name='Дата добавления'
     )
 
@@ -174,6 +178,10 @@ class ShoppingList(models.Model):
     class Meta:
         verbose_name = 'Покупка'
         verbose_name_plural = 'Список покупок'
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'recipe'],
+                                    name='unique_shopping_list_recipes')
+        ]
 
     def __str__(self):
         return f'Пользователь: {self.user}, покупает:{self.recipe}'
