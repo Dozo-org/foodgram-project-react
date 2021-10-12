@@ -1,4 +1,5 @@
 # Foodgram 
+![example workflow](https://github.com/Dozo-org/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
 [![GitHub%20Actions](https://img.shields.io/badge/-GitHub%20Actions-464646??style=flat-square&logo=GitHub%20actions)](https://github.com/features/actions)
 [![GitHub](https://img.shields.io/badge/-GitHub-464646??style=flat-square&logo=GitHub)](https://github.com/)
@@ -95,13 +96,9 @@ docker-compose exec web python manage.py createsuperuser
 
 ## Ссылки
 
-Проект доступен по следующей ссылке <http://178.154.224.251/>
+Проект доступен по следующей ссылке <http://62.84.118.105/>
 
 Учетная запись администратора:
 
   - Email: admin@foodgram.com
   - Password: foodgram
-
-## Бейдж workflows
-
-![example workflow](https://github.com/Dozo-org/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
